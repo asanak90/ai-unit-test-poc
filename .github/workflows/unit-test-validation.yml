@@ -1,0 +1,27 @@
+name: Unit Test Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  unit-test-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore AiUnitTestPoc.slnx
+
+      - name: Build solution
+        run: dotnet build AiUnitTestPoc.slnx --no-restore
+
+      - name: Run unit tests
+        run: dotnet test AiUnitTestPoc.slnx --no-build --collect:"XPlat Code Coverage"
