@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -25,3 +27,19 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test AiUnitTestPoc.slnx --no-build --collect:"XPlat Code Coverage"
+
+      - name: Detect changed C# files
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          echo "Changed C# files:"
+          git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.cs'
+
+      - name: Analyze changed C# code
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          chmod +x scripts/analyze-code.sh
+          ./scripts/analyze-code.sh    

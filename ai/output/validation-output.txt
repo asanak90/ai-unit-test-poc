@@ -1,0 +1,14 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  PaymentService -> /Users/aybhardwaj/ai-unit-test-poc/PaymentService/bin/Debug/net10.0/PaymentService.dll
+  PaymentService.Tests -> /Users/aybhardwaj/ai-unit-test-poc/PaymentService.Tests/bin/Debug/net10.0/PaymentService.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.56
+Test run for /Users/aybhardwaj/ai-unit-test-poc/PaymentService.Tests/bin/Debug/net10.0/PaymentService.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     6, Skipped:     0, Total:     6, Duration: 23 ms - PaymentService.Tests.dll (net10.0)
