@@ -19,6 +19,9 @@ public class PaymentService
         if (payment.Amount <= 0)
             return false;
 
+        if (payment.Amount > 10000)
+            return false;    
+
         return true;
     }
 }
